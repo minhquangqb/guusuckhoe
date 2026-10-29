@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bộ giải pháp Trị liệu Cổ – Guusuckhoe.com</title>
+  <meta name="description" content="Máy trị liệu cổ 4 trong 1 kèm lộ trình 14 ngày tại nhà. Đổi trả 14 ngày, bảo hành 12 tháng, giao hàng miễn phí toàn quốc." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Brand tokens, sampled from the Guusuckhoe logo */
+    :root {
+      --bg: #FBFAF5;          /* matches logo canvas so the mark blends in */
+      --surface: #FFFFFF;
+      --cream: #F3EEE2;
+      --ink: #14231F;
+      --ink-muted: #4A5753;   /* 7.9:1 on --bg */
+      --green: #0E4A3C;
+      --green-700: #0A3A2F;
+      --green-50: #E7EFEC;
+      --gold: #C9A45C;        /* decorative only: borders, icons, large type */
+      --gold-ink: #8A6526;    /* gold for small text: 4.9:1 on --bg */
+      --gold-50: #F7F0E1;
+      --gold-light: #E9D9B4;  /* gold for small text on --green: 7.3:1 */
+      --line: #E4DED0;
+      --green-900: #0A2E26;
+      --gold-hover: #D7B572;
+      --ph-stripe: #EEE8DA;
+      --danger: #A33A2B;
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: 'var(--bg)', surface: 'var(--surface)', cream: 'var(--cream)',
+            ink: 'var(--ink)', muted: 'var(--ink-muted)',
+            green: { DEFAULT: 'var(--green)', 700: 'var(--green-700)', 900: 'var(--green-900)', 50: 'var(--green-50)' },
+            gold: { DEFAULT: 'var(--gold)', ink: 'var(--gold-ink)', light: 'var(--gold-light)', hover: 'var(--gold-hover)', 50: 'var(--gold-50)' },
+            line: 'var(--line)', danger: 'var(--danger)',
+          },
+          fontFamily: {
+            serif: ['Lora', 'Georgia', 'serif'],
+            sans: ['"Be Vietnam Pro"', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Be Vietnam Pro', sans-serif; }
+    .gold-rule { height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .leaf-bg { background-image: radial-gradient(circle at 85% 10%, var(--gold-50) 0, transparent 40%), radial-gradient(circle at 0% 100%, var(--green-50) 0, transparent 45%); }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 6px; }
+    .snap-row { scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .snap-row::-webkit-scrollbar { display: none; }
+    .snap-row > * { scroll-snap-align: start; }
+    details summary::-webkit-details-marker { display: none; }
+    details[open] .chev { transform: rotate(180deg); }
+    .pkg:has(input:checked) { border-color: var(--green); box-shadow: 0 0 0 1px var(--green); background: var(--surface); }
+    .pkg:has(input:checked) .pkg-body { display: block; }
+    .pkg-body { display: none; }
+    .ph { background: repeating-linear-gradient(135deg, var(--cream), var(--cream) 10px, var(--ph-stripe) 10px, var(--ph-stripe) 20px); border: 1.5px dashed var(--gold); }
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .3s ease-out, transform .3s ease-out; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0ms !important; animation: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body class="bg-bg text-ink antialiased">
+
+<!-- Lucide icon sprite -->
+<svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5v14"/></symbol>
+  <symbol id="i-rotate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62L18.3 9.38a1 1 0 0 0-.78-.38H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 13h4M10 17h4"/></symbol>
+  <symbol id="i-msg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+  <symbol id="i-move" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M8 6l4-4 4 4M8 18l4 4 4-4"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+  <symbol id="i-waves" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></symbol>
+</svg>
+
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 bg-green text-white px-4 py-2 rounded">Chuyển đến nội dung</a>
+
+<!-- Announcement -->
+<div class="bg-green text-gold-light text-center text-sm py-2 px-4">
+  Mỗi bộ sản phẩm đều kèm <strong class="font-semibold text-white">lộ trình 14 ngày</strong> riêng cho bạn
+</div>
+
+<!-- Header -->
+<header class="sticky top-0 z-40 bg-bg/95 backdrop-blur border-b border-line">
+  <div class="max-w-6xl mx-auto px-4 h-16 md:h-20 flex items-center justify-between gap-4">
+    <a href="#" class="flex items-center gap-2 shrink-0" aria-label="Guusuckhoe.com – Trang chủ">
+      <img src="assets/logo-mark.png" alt="" width="44" height="45" class="w-10 h-auto md:w-11" />
+      <span class="font-serif text-xl md:text-2xl font-semibold text-green tracking-tight">Guusuckhoe<span class="text-gold-ink">.com</span></span>
+    </a>
+    <nav aria-label="Chính" class="hidden md:flex items-center gap-1 text-[15px] font-medium">
+      <a href="#" class="px-3 py-2 rounded-md hover:text-green hover:bg-green-50 transition-colors duration-200">Trang chủ</a>
+      <a href="#chon-goi" class="px-3 py-2 rounded-md text-green bg-green-50">Bộ trị liệu cổ</a>
+      <a href="#lo-trinh" class="px-3 py-2 rounded-md hover:text-green hover:bg-green-50 transition-colors duration-200">Lộ trình</a>
+      <a href="#hoi-dap" class="px-3 py-2 rounded-md hover:text-green hover:bg-green-50 transition-colors duration-200">Hỏi đáp</a>
+      <a href="#lien-he" class="px-3 py-2 rounded-md hover:text-green hover:bg-green-50 transition-colors duration-200">Liên hệ</a>
+    </nav>
+    <div class="flex items-center gap-1">
+      <a href="#chon-goi" class="relative inline-flex items-center justify-center w-11 h-11 rounded-full hover:bg-green-50 transition-colors duration-200" aria-label="Giỏ hàng">
+        <svg class="w-6 h-6 text-green"><use href="#i-cart"/></svg>
+      </a>
+      <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-full hover:bg-green-50 transition-colors duration-200" aria-label="Mở menu" aria-expanded="false" aria-controls="mobileNav">
+        <svg class="w-6 h-6"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav id="mobileNav" aria-label="Di động" class="hidden md:hidden border-t border-line bg-bg px-4 py-2 text-base font-medium">
+    <a href="#" class="block py-3">Trang chủ</a>
+    <a href="#chon-goi" class="block py-3 text-green">Bộ trị liệu cổ</a>
+    <a href="#lo-trinh" class="block py-3">Lộ trình</a>
+    <a href="#hoi-dap" class="block py-3">Hỏi đáp</a>
+    <a href="#lien-he" class="block py-3">Liên hệ</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- ===== HERO / BUY BOX ===== -->
+<section id="chon-goi" class="leaf-bg scroll-mt-20">
+  <div class="max-w-6xl mx-auto px-4 py-6 md:py-12 grid md:grid-cols-2 gap-8 lg:gap-14">
+    <!-- TEMP: images in assets/tmp-therahome are TheraHOME's, replace with your own before going live -->
+    <div class="min-w-0">
+      <div class="snap-row flex overflow-x-auto rounded-2xl" id="gallery" aria-label="Ảnh sản phẩm">
+        <img src="assets/tmp-therahome/gallery-1.jpg" alt="Máy trị liệu cổ kèm lộ trình" width="900" height="900" class="shrink-0 w-full aspect-square object-cover rounded-2xl bg-cream" />
+        <img src="assets/tmp-therahome/gallery-2.jpg" alt="Trọn bộ giải pháp trị liệu cổ" width="900" height="900" loading="lazy" class="shrink-0 w-full aspect-square object-cover rounded-2xl bg-cream" />
+        <img src="assets/tmp-therahome/gallery-8.jpg" alt="Combo máy trị liệu và gối công thái học" width="900" height="900" loading="lazy" class="shrink-0 w-full aspect-square object-cover rounded-2xl bg-cream" />
+        <img src="assets/tmp-therahome/mech-1.jpg" alt="Kéo giãn cổ khi nằm" width="900" height="900" loading="lazy" class="shrink-0 w-full aspect-square object-cover rounded-2xl bg-cream" />
+      </div>
+      <div class="mt-3 grid grid-cols-4 gap-2" role="group" aria-label="Chọn ảnh">
+        <button class="thumb aspect-square rounded-lg overflow-hidden ring-2 ring-green" data-i="0" aria-label="Xem ảnh 1"><img src="assets/tmp-therahome/gallery-1.jpg" alt="" width="160" height="160" loading="lazy" class="w-full h-full object-cover" /></button>
+        <button class="thumb aspect-square rounded-lg overflow-hidden" data-i="1" aria-label="Xem ảnh 2"><img src="assets/tmp-therahome/gallery-2.jpg" alt="" width="160" height="160" loading="lazy" class="w-full h-full object-cover" /></button>
+        <button class="thumb aspect-square rounded-lg overflow-hidden" data-i="2" aria-label="Xem ảnh 3"><img src="assets/tmp-therahome/gallery-8.jpg" alt="" width="160" height="160" loading="lazy" class="w-full h-full object-cover" /></button>
+        <button class="thumb aspect-square rounded-lg overflow-hidden" data-i="3" aria-label="Xem ảnh 4"><img src="assets/tmp-therahome/mech-1.jpg" alt="" width="160" height="160" loading="lazy" class="w-full h-full object-cover" /></button>
+      </div>
+    </div>
+
+    <!-- Buy box -->
+    <div class="min-w-0">
+      <p class="text-sm font-semibold tracking-widest uppercase text-gold-ink">Bộ giải pháp trị liệu cổ</p>
+      <h1 class="mt-2 font-serif text-3xl md:text-[42px] leading-tight font-semibold text-green">Máy trị liệu cổ 4&nbsp;trong&nbsp;1</h1>
+      <p class="mt-3 text-muted text-lg leading-relaxed">Đi kèm lộ trình 14 ngày do chuyên gia xây dựng, điều chỉnh theo tình trạng cổ vai gáy của riêng bạn.</p>
+      <!-- TODO: show real rating once you have reviews, e.g. ★ 4.9 (120 đánh giá) -->
+
+      <div class="gold-rule my-6"></div>
+      <h2 class="font-serif text-xl font-semibold mb-3">Chọn gói phù hợp</h2>
+
+      <form id="buyForm" class="space-y-3">
+        <!-- Package 1 -->
+        <label class="pkg block border border-line rounded-2xl p-4 cursor-pointer bg-surface/60 transition-colors duration-200">
+          <div class="flex items-start gap-3">
+            <input type="radio" name="pkg" value="basic" class="mt-1.5 w-5 h-5 accent-[var(--green)]" checked />
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="font-semibold text-lg">Bộ trị liệu cổ</span>
+                <span class="text-xs font-semibold bg-gold-50 text-gold-ink border border-gold/50 rounded-full px-2 py-0.5">Phổ biến</span>
+              </div>
+              <p class="text-sm text-muted mt-0.5">Máy + lộ trình 14 ngày + miếng dán + gel</p>
+            </div>
+            <div class="text-right">
+              <div class="font-serif text-xl font-bold text-green" data-price="basic"></div>
+              <s class="text-sm text-muted" data-compare="basic"></s>
+            </div>
+          </div>
+          <div class="pkg-body mt-4 pt-4 border-t border-line">
+            <div class="flex items-center justify-between gap-3">
+              <span class="text-sm font-medium">Số lượng</span>
+              <div class="qty flex items-center border border-line rounded-full bg-surface" data-pkg="basic">
+                <button type="button" class="w-11 h-11 inline-flex items-center justify-center rounded-full hover:bg-green-50 transition-colors duration-200" data-step="-1" aria-label="Giảm số lượng"><svg class="w-4 h-4"><use href="#i-minus"/></svg></button>
+                <output class="w-8 text-center font-semibold" aria-live="polite">1</output>
+                <button type="button" class="w-11 h-11 inline-flex items-center justify-center rounded-full hover:bg-green-50 transition-colors duration-200" data-step="1" aria-label="Tăng số lượng"><svg class="w-4 h-4"><use href="#i-plus"/></svg></button>
+              </div>
+            </div>
+            <p class="save text-sm text-green font-medium mt-2 hidden"></p>
+          </div>
+        </label>
+
+        <!-- Package 2 -->
+        <label class="pkg block border border-line rounded-2xl p-4 cursor-pointer bg-surface/60 transition-colors duration-200">
+          <div class="flex items-start gap-3">
+            <input type="radio" name="pkg" value="combo" class="mt-1.5 w-5 h-5 accent-[var(--green)]" />
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="font-semibold text-lg">Combo phục hồi toàn diện</span>
+                <span class="text-xs font-semibold bg-green text-white rounded-full px-2 py-0.5">Chuyên gia khuyên dùng</span>
+              </div>
+              <p class="text-sm text-muted mt-0.5">Toàn bộ gói trên + gối công thái học nâng đỡ đốt sống C4–C7</p>
+            </div>
+            <div class="text-right">
+              <div class="font-serif text-xl font-bold text-green" data-price="combo"></div>
+              <s class="text-sm text-muted" data-compare="combo"></s>
+            </div>
+          </div>
+          <div class="pkg-body mt-4 pt-4 border-t border-line">
+            <div class="flex items-center justify-between gap-3">
+              <span class="text-sm font-medium">Số lượng</span>
+              <div class="qty flex items-center border border-line rounded-full bg-surface" data-pkg="combo">
+                <button type="button" class="w-11 h-11 inline-flex items-center justify-center rounded-full hover:bg-green-50 transition-colors duration-200" data-step="-1" aria-label="Giảm số lượng"><svg class="w-4 h-4"><use href="#i-minus"/></svg></button>
+                <output class="w-8 text-center font-semibold" aria-live="polite">1</output>
+                <button type="button" class="w-11 h-11 inline-flex items-center justify-center rounded-full hover:bg-green-50 transition-colors duration-200" data-step="1" aria-label="Tăng số lượng"><svg class="w-4 h-4"><use href="#i-plus"/></svg></button>
+              </div>
+            </div>
+            <p class="save text-sm text-green font-medium mt-2 hidden"></p>
+          </div>
+        </label>
+
+        <button type="submit" class="w-full min-h-[56px] rounded-full bg-green hover:bg-green-700 text-white font-semibold text-lg shadow-lg shadow-green/20 transition-colors duration-200 cursor-pointer">
+          Mua ngay — <span id="total"></span>
+        </button>
+        <a href="#lien-he" class="w-full min-h-[48px] inline-flex items-center justify-center gap-2 rounded-full border border-green text-green font-semibold hover:bg-green-50 transition-colors duration-200">
+          <svg class="w-5 h-5"><use href="#i-msg"/></svg> Tư vấn miễn phí qua Zalo
+        </a>
+      </form>
+
+      <ul class="mt-6 grid grid-cols-3 gap-2 text-center">
+        <li class="rounded-xl bg-surface border border-line p-3"><svg class="w-6 h-6 mx-auto text-gold"><use href="#i-rotate"/></svg><b class="block mt-1 font-serif text-green">14 ngày</b><span class="text-xs text-muted">đổi trả</span></li>
+        <li class="rounded-xl bg-surface border border-line p-3"><svg class="w-6 h-6 mx-auto text-gold"><use href="#i-shield"/></svg><b class="block mt-1 font-serif text-green">12 tháng</b><span class="text-xs text-muted">bảo hành</span></li>
+        <li class="rounded-xl bg-surface border border-line p-3"><svg class="w-6 h-6 mx-auto text-gold"><use href="#i-truck"/></svg><b class="block mt-1 font-serif text-green">Miễn phí</b><span class="text-xs text-muted">giao hàng</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROBLEM ===== -->
+<section class="bg-green text-white">
+  <div class="max-w-3xl mx-auto px-4 py-16 md:py-24 text-center reveal">
+    <img src="assets/logo-mark.png" alt="" width="56" height="57" class="mx-auto w-14 h-auto rounded-full bg-bg p-1.5" />
+    <p class="mt-6 text-gold-light text-lg">Bạn không thiếu cách chữa.</p>
+    <h2 class="mt-2 font-serif text-3xl md:text-5xl font-semibold leading-tight">Thứ bạn thiếu là <em class="text-gold not-italic">một lộ trình</em>.</h2>
+    <p class="mt-6 text-lg text-white/85 leading-relaxed">Chữa mỗi lúc một kiểu, đau đâu xoa đó mà không có kế hoạch rõ ràng — đó là lý do cơn đau cổ vai gáy cứ quay lại.</p>
+  </div>
+</section>
+
+<!-- ===== 14-DAY ROADMAP ===== -->
+<section id="lo-trinh" class="scroll-mt-20">
+  <div class="max-w-6xl mx-auto px-4 py-16 md:py-24">
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <p class="text-sm font-semibold tracking-widest uppercase text-gold-ink">Lộ trình 14 ngày</p>
+      <h2 class="mt-2 font-serif text-3xl md:text-4xl font-semibold text-green">Mỗi ngày một mục tiêu rõ ràng</h2>
+      <p class="mt-3 text-muted text-lg">2 giai đoạn · 14 ngày · hướng dẫn bằng video từng ngày</p>
+    </div>
+
+    <div class="mt-12 grid md:grid-cols-2 gap-6">
+      <article class="reveal rounded-3xl bg-surface border border-line p-6 md:p-8">
+        <div class="flex items-center justify-between gap-4">
+          <div>
+            <p class="text-sm font-semibold text-gold-ink">Giai đoạn 1 · Ngày 1–7</p>
+            <h3 class="font-serif text-2xl font-semibold text-green mt-1">Giảm đau</h3>
+          </div>
+          <span class="text-sm bg-green-50 text-green font-semibold rounded-full px-3 py-1.5 whitespace-nowrap">20 phút/ngày</span>
+        </div>
+        <ol class="mt-6 space-y-1">
+          <li class="flex gap-4 items-center py-2 border-b border-line/70"><span class="font-serif text-gold-ink w-16 shrink-0 whitespace-nowrap">Ngày 1</span>Làm quen với thiết bị</li>
+          <li class="flex gap-4 items-center py-2 border-b border-line/70"><span class="font-serif text-gold-ink w-16 shrink-0 whitespace-nowrap">Ngày 2</span>Khởi động nhẹ</li>
+          <li class="flex gap-4 items-center py-2 border-b border-line/70"><span class="font-serif text-gold-ink w-16 shrink-0 whitespace-nowrap">Ngày 3</span>Giảm đau</li>
+          <li class="flex gap-4 items-center py-2 border-b border-line/70"><span class="font-serif text-gold-ink w-16 shrink-0 whitespace-nowrap">Ngày 4</span>Giảm co cứng</li>
+          <li class="flex gap-4 items-center py-2 border-b border-line/70"><span class="font-serif text-gold-ink w-16 shrink-0 whitespace-nowrap">Ngày 5</span>Giảm tê lan</li>
+          <li class="flex gap-4 items-center py-2 border-b border-line/70"><span class="font-serif text-gold-ink w-16 shrink-0 whitespace-nowrap">Ngày 6</span>Giảm kích thích thần kinh</li>
+          <li class="flex gap-4 items-center py-2"><span class="font-serif text-gold-ink w-16 shrink-0 whitespace-nowrap">Ngày 7</span><b class="font-semibold">Tổng kết giai đoạn 1</b></li>
+        </ol>
+      </article>
+      <article class="reveal rounded-3xl bg-green text-white p-6 md:p-8">
+        <div class="flex items-center justify-between gap-4">
+          <div>
+            <p class="text-sm font-semibold text-gold-light">Giai đoạn 2 · Ngày 8–14</p>
+            <h3 class="font-serif text-2xl font-semibold mt-1">Ổn định</h3>
+          </div>
+          <span class="text-sm bg-white/10 font-semibold rounded-full px-3 py-1.5 whitespace-nowrap">25 phút/ngày</span>
+        </div>
+        <ol class="mt-6 space-y-1">
+          <li class="flex gap-4 items-center py-2 border-b border-white/15"><span class="font-serif text-gold-light w-16 shrink-0 whitespace-nowrap">Ngày 8</span>Nắn chỉnh</li>
+          <li class="flex gap-4 items-center py-2 border-b border-white/15"><span class="font-serif text-gold-light w-16 shrink-0 whitespace-nowrap">Ngày 9</span>Điều chỉnh tư thế cổ</li>
+          <li class="flex gap-4 items-center py-2 border-b border-white/15"><span class="font-serif text-gold-light w-16 shrink-0 whitespace-nowrap">Ngày 10</span>Phục hồi đường cong cổ</li>
+          <li class="flex gap-4 items-center py-2 border-b border-white/15"><span class="font-serif text-gold-light w-16 shrink-0 whitespace-nowrap">Ngày 11</span>Tăng sức mạnh cơ lõi</li>
+          <li class="flex gap-4 items-center py-2 border-b border-white/15"><span class="font-serif text-gold-light w-16 shrink-0 whitespace-nowrap">Ngày 12</span>Tăng sức bền</li>
+          <li class="flex gap-4 items-center py-2 border-b border-white/15"><span class="font-serif text-gold-light w-16 shrink-0 whitespace-nowrap">Ngày 13</span>Ổn định toàn cột sống</li>
+          <li class="flex gap-4 items-center py-2"><span class="font-serif text-gold-light w-16 shrink-0 whitespace-nowrap">Ngày 14</span><b class="font-semibold">Tổng kết &amp; tự đánh giá</b></li>
+        </ol>
+      </article>
+    </div>
+
+    <!-- Session structure -->
+    <div class="mt-16 reveal">
+      <h3 class="text-center font-serif text-2xl md:text-3xl font-semibold text-green">Mỗi buổi tập gồm 3 phần</h3>
+      <p class="text-center text-muted mt-2">Khoảng 20 phút, làm theo đúng thứ tự</p>
+      <ol class="mt-8 grid sm:grid-cols-3 gap-4">
+        <li class="rounded-2xl border border-line bg-surface p-6 text-center">
+          <span class="inline-flex w-12 h-12 items-center justify-center rounded-full border border-gold font-serif text-xl text-gold-ink">1</span>
+          <h4 class="mt-3 font-semibold text-lg">Khởi động</h4><p class="text-muted">5 phút</p>
+        </li>
+        <li class="rounded-2xl border border-line bg-surface p-6 text-center">
+          <span class="inline-flex w-12 h-12 items-center justify-center rounded-full border border-gold font-serif text-xl text-gold-ink">2</span>
+          <h4 class="mt-3 font-semibold text-lg">Trị liệu bằng máy</h4><p class="text-muted">10 phút</p>
+        </li>
+        <li class="rounded-2xl border border-line bg-surface p-6 text-center">
+          <span class="inline-flex w-12 h-12 items-center justify-center rounded-full border border-gold font-serif text-xl text-gold-ink">3</span>
+          <h4 class="mt-3 font-semibold text-lg">Nắn chỉnh &amp; thư giãn</h4><p class="text-muted">5 phút</p>
+        </li>
+      </ol>
+      <!-- Replace with your own guide video (YouTube iframe with loading="lazy") -->
+      <div class="ph mt-8 aspect-video rounded-3xl flex flex-col items-center justify-center gap-3 text-gold-ink max-w-4xl mx-auto">
+        <span class="w-16 h-16 rounded-full bg-green text-white inline-flex items-center justify-center"><svg class="w-7 h-7 ml-1"><use href="#i-play"/></svg></span>
+        <span class="font-medium">Video hướng dẫn của kỹ thuật viên</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEVICE: 4 MECHANISMS ===== -->
+<section class="bg-cream">
+  <div class="max-w-6xl mx-auto px-4 py-16 md:py-24">
+    <div class="max-w-2xl reveal">
+      <p class="text-sm font-semibold tracking-widest uppercase text-gold-ink">01 · Thiết bị</p>
+      <h2 class="mt-2 font-serif text-3xl md:text-4xl font-semibold text-green">Không chỉ là một chiếc máy</h2>
+      <p class="mt-3 text-lg text-muted font-serif italic">“Một thiết bị để bắt đầu. Một lộ trình để duy trì.”</p>
+    </div>
+    <!-- NOTE: confirm the specs below against your device's spec sheet -->
+    <div class="snap-row mt-10 flex lg:grid lg:grid-cols-4 gap-4 overflow-x-auto -mx-4 px-4 lg:mx-0 lg:px-0 pb-2">
+      <article class="shrink-0 w-[80%] sm:w-[45%] lg:w-auto rounded-3xl bg-surface border border-line overflow-hidden">
+        <img src="assets/tmp-therahome/mech-1.jpg" alt="Kéo giãn nhẹ cột sống cổ" width="800" height="640" loading="lazy" class="w-full aspect-[5/4] object-cover" />
+        <div class="p-6 pt-0 -mt-6 relative">
+        <span class="w-12 h-12 rounded-2xl bg-green text-gold inline-flex items-center justify-center ring-4 ring-surface"><svg class="w-6 h-6"><use href="#i-move"/></svg></span>
+        <p class="mt-5 text-xs font-semibold uppercase tracking-wider text-gold-ink">Cơ chế 1</p>
+        <h3 class="font-serif text-xl font-semibold text-green mt-1">Kéo giãn nhẹ</h3>
+        <p class="mt-2 text-muted leading-relaxed">Giải nén cột sống cổ, tạo khoảng trống giữa các đốt sống, giảm áp lực lên dây thần kinh.</p>
+        </div>
+      </article>
+      <article class="shrink-0 w-[80%] sm:w-[45%] lg:w-auto rounded-3xl bg-surface border border-line overflow-hidden">
+        <img src="assets/tmp-therahome/mech-2.jpg" alt="Xung điện EMS tác động nhóm cơ cổ" width="800" height="640" loading="lazy" class="w-full aspect-[5/4] object-cover" />
+        <div class="p-6 pt-0 -mt-6 relative">
+        <span class="w-12 h-12 rounded-2xl bg-green text-gold inline-flex items-center justify-center ring-4 ring-surface"><svg class="w-6 h-6"><use href="#i-zap"/></svg></span>
+        <p class="mt-5 text-xs font-semibold uppercase tracking-wider text-gold-ink">Cơ chế 2</p>
+        <h3 class="font-serif text-xl font-semibold text-green mt-1">Xung điện EMS</h3>
+        <p class="mt-2 text-muted leading-relaxed">Kích hoạt nhóm cơ quanh cổ, giảm co cứng do phải gồng giữ tư thế cả ngày.</p>
+        </div>
+      </article>
+      <article class="shrink-0 w-[80%] sm:w-[45%] lg:w-auto rounded-3xl bg-surface border border-line overflow-hidden">
+        <img src="assets/tmp-therahome/mech-3.jpg" alt="Ba mức nhiệt làm ấm vùng cổ" width="800" height="640" loading="lazy" class="w-full aspect-[5/4] object-cover" />
+        <div class="p-6 pt-0 -mt-6 relative">
+        <span class="w-12 h-12 rounded-2xl bg-green text-gold inline-flex items-center justify-center ring-4 ring-surface"><svg class="w-6 h-6"><use href="#i-flame"/></svg></span>
+        <p class="mt-5 text-xs font-semibold uppercase tracking-wider text-gold-ink">Cơ chế 3</p>
+        <h3 class="font-serif text-xl font-semibold text-green mt-1">Liệu pháp nhiệt</h3>
+        <p class="mt-2 text-muted leading-relaxed">Nhiều mức nhiệt làm ấm sâu vùng cổ vai gáy, tăng lưu thông máu, giúp cơ thư giãn.</p>
+        </div>
+      </article>
+      <article class="shrink-0 w-[80%] sm:w-[45%] lg:w-auto rounded-3xl bg-surface border border-line overflow-hidden">
+        <img src="assets/tmp-therahome/mech-4.jpg" alt="Massage rung vùng cổ vai gáy" width="800" height="640" loading="lazy" class="w-full aspect-[5/4] object-cover" />
+        <div class="p-6 pt-0 -mt-6 relative">
+        <span class="w-12 h-12 rounded-2xl bg-green text-gold inline-flex items-center justify-center ring-4 ring-surface"><svg class="w-6 h-6"><use href="#i-waves"/></svg></span>
+        <p class="mt-5 text-xs font-semibold uppercase tracking-wider text-gold-ink">Cơ chế 4</p>
+        <h3 class="font-serif text-xl font-semibold text-green mt-1">Massage rung</h3>
+        <p class="mt-2 text-muted leading-relaxed">Làm mềm các điểm căng cứng, thường dùng để kết thúc một buổi trị liệu.</p>
+        </div>
+      </article>
+    </div>
+    <p class="lg:hidden mt-2 text-sm text-muted">Vuốt ngang để xem 4 cơ chế</p>
+  </div>
+</section>
+
+<!-- ===== ROADMAP DELIVERY ===== -->
+<section>
+  <div class="max-w-6xl mx-auto px-4 py-16 md:py-24">
+    <div class="max-w-2xl reveal">
+      <p class="text-sm font-semibold tracking-widest uppercase text-gold-ink">02 · Lộ trình</p>
+      <h2 class="mt-2 font-serif text-3xl md:text-4xl font-semibold text-green">Không tự mò. Không dùng theo cảm tính.</h2>
+      <p class="mt-3 text-lg text-muted">Dùng máy theo cảm hứng chủ yếu chỉ giảm đau tạm thời. Lộ trình giúp bạn <b class="text-ink font-semibold">không tái đau trở lại</b>. Chọn cách nhận thuận tiện nhất:</p>
+    </div>
+    <div class="mt-10 grid md:grid-cols-2 gap-6">
+      <article class="reveal rounded-3xl border border-line bg-surface p-6 md:p-8">
+        <span class="w-12 h-12 rounded-2xl bg-gold-50 text-gold-ink inline-flex items-center justify-center"><svg class="w-6 h-6"><use href="#i-msg"/></svg></span>
+        <p class="mt-5 text-sm font-semibold text-gold-ink">Cách 1 · Zalo</p>
+        <h3 class="font-serif text-2xl font-semibold text-green mt-1">Chuyên viên đồng hành qua Zalo</h3>
+        <ul class="mt-4 space-y-2">
+          <li class="flex gap-2"><svg class="w-5 h-5 mt-0.5 text-green shrink-0"><use href="#i-check"/></svg>Hỏi tình trạng, gửi lộ trình phù hợp</li>
+          <li class="flex gap-2"><svg class="w-5 h-5 mt-0.5 text-green shrink-0"><use href="#i-check"/></svg>Nhắc lịch tập mỗi ngày</li>
+          <li class="flex gap-2"><svg class="w-5 h-5 mt-0.5 text-green shrink-0"><use href="#i-check"/></svg>Vướng ở đâu, nhắn là có người trả lời</li>
+        </ul>
+      </article>
+      <article class="reveal rounded-3xl border border-line bg-surface p-6 md:p-8">
+        <span class="w-12 h-12 rounded-2xl bg-gold-50 text-gold-ink inline-flex items-center justify-center"><svg class="w-6 h-6"><use href="#i-play"/></svg></span>
+        <p class="mt-5 text-sm font-semibold text-gold-ink">Cách 2 · Video / mã QR</p>
+        <h3 class="font-serif text-2xl font-semibold text-green mt-1">Bộ 14 video hướng dẫn</h3>
+        <ul class="mt-4 space-y-2">
+          <li class="flex gap-2"><svg class="w-5 h-5 mt-0.5 text-green shrink-0"><use href="#i-check"/></svg>Không cần cài ứng dụng</li>
+          <li class="flex gap-2"><svg class="w-5 h-5 mt-0.5 text-green shrink-0"><use href="#i-check"/></svg>Mỗi ngày một bài, quét mã QR trong hộp</li>
+          <li class="flex gap-2"><svg class="w-5 h-5 mt-0.5 text-green shrink-0"><use href="#i-check"/></svg>Xem lại bất cứ lúc nào</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESULTS (real customer data only) ===== -->
+<section class="bg-green-50">
+  <div class="max-w-6xl mx-auto px-4 py-16 md:py-24">
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <p class="text-sm font-semibold tracking-widest uppercase text-gold-ink">Sau 14 ngày</p>
+      <h2 class="mt-2 font-serif text-3xl md:text-4xl font-semibold text-green">Khách hàng tự chấm điểm cải thiện</h2>
+      <p class="mt-3 text-muted text-lg">Ảnh chụp trực tiếp từ Zalo chăm sóc khách hàng, không chỉnh sửa.</p>
+    </div>
+    <!-- TODO: replace with real Zalo screenshots from your customers (with consent, hide personal info) -->
+    <div class="snap-row mt-10 flex md:grid md:grid-cols-3 gap-4 overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0">
+      <div class="ph shrink-0 w-[78%] md:w-auto aspect-[3/4] rounded-3xl flex flex-col items-center justify-center gap-2 text-gold-ink text-center p-6"><svg class="w-10 h-10"><use href="#i-msg"/></svg><span class="font-medium">Ảnh phản hồi Zalo của khách #1</span></div>
+      <div class="ph shrink-0 w-[78%] md:w-auto aspect-[3/4] rounded-3xl flex flex-col items-center justify-center gap-2 text-gold-ink text-center p-6"><svg class="w-10 h-10"><use href="#i-msg"/></svg><span class="font-medium">Ảnh phản hồi Zalo của khách #2</span></div>
+      <div class="ph shrink-0 w-[78%] md:w-auto aspect-[3/4] rounded-3xl flex flex-col items-center justify-center gap-2 text-gold-ink text-center p-6"><svg class="w-10 h-10"><use href="#i-msg"/></svg><span class="font-medium">Ảnh phản hồi Zalo của khách #3</span></div>
+    </div>
+    <p class="mt-10 text-center font-serif text-2xl text-green">Kết quả đến từ việc làm <b class="text-gold-ink">Đúng · Đủ · Đều</b>.</p>
+  </div>
+</section>
+
+<!-- ===== COMPARISON ===== -->
+<section>
+  <div class="max-w-4xl mx-auto px-4 py-16 md:py-24">
+    <div class="text-center reveal">
+      <p class="text-sm font-semibold tracking-widest uppercase text-gold-ink">Vì sao chọn Guusuckhoe</p>
+      <h2 class="mt-2 font-serif text-3xl md:text-4xl font-semibold text-green">Khác gì máy massage cổ thông thường?</h2>
+      <p class="mt-3 text-muted text-lg">Máy chỉ là điểm bắt đầu. Khác biệt nằm ở những gì đi cùng.</p>
+    </div>
+    <div class="mt-10 overflow-hidden rounded-3xl border border-line bg-surface reveal">
+      <table class="w-full text-left">
+        <caption class="sr-only">So sánh bộ trị liệu cổ Guusuckhoe với máy massage thông thường</caption>
+        <thead class="bg-cream">
+          <tr>
+            <th scope="col" class="p-4 font-semibold">Tiêu chí</th>
+            <th scope="col" class="p-4 font-semibold text-green text-center w-28 md:w-40 bg-green-50">Guusuckhoe</th>
+            <th scope="col" class="p-4 font-semibold text-muted text-center w-24 md:w-36">Máy thường</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          <tr><th scope="row" class="p-4 font-normal">4 cơ chế trị liệu trong 1 máy</th><td class="p-4 text-center bg-green-50/60"><svg class="w-6 h-6 mx-auto text-green" aria-label="Có"><use href="#i-check"/></svg></td><td class="p-4 text-center text-sm text-muted">1–2 cơ chế</td></tr>
+          <tr><th scope="row" class="p-4 font-normal">Lộ trình 14 ngày theo tình trạng</th><td class="p-4 text-center bg-green-50/60"><svg class="w-6 h-6 mx-auto text-green" aria-label="Có"><use href="#i-check"/></svg></td><td class="p-4 text-center text-sm text-muted">Tự đoán</td></tr>
+          <tr><th scope="row" class="p-4 font-normal">Video hướng dẫn từng ngày</th><td class="p-4 text-center bg-green-50/60"><svg class="w-6 h-6 mx-auto text-green" aria-label="Có"><use href="#i-check"/></svg></td><td class="p-4 text-center"><svg class="w-5 h-5 mx-auto text-danger" aria-label="Không"><use href="#i-x"/></svg></td></tr>
+          <tr><th scope="row" class="p-4 font-normal">Chuyên viên theo dõi qua Zalo sau mua</th><td class="p-4 text-center bg-green-50/60"><svg class="w-6 h-6 mx-auto text-green" aria-label="Có"><use href="#i-check"/></svg></td><td class="p-4 text-center"><svg class="w-5 h-5 mx-auto text-danger" aria-label="Không"><use href="#i-x"/></svg></td></tr>
+          <tr><th scope="row" class="p-4 font-normal">Đổi trả 14 ngày miễn phí</th><td class="p-4 text-center bg-green-50/60"><svg class="w-6 h-6 mx-auto text-green" aria-label="Có"><use href="#i-check"/></svg></td><td class="p-4 text-center text-sm text-muted">Tuỳ nơi</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST ===== -->
+<section class="bg-cream">
+  <div class="max-w-6xl mx-auto px-4 py-16 md:py-24">
+    <div class="max-w-2xl reveal">
+      <p class="text-sm font-semibold tracking-widest uppercase text-gold-ink">An tâm khi mua</p>
+      <h2 class="mt-2 font-serif text-3xl md:text-4xl font-semibold text-green">Rõ nguồn gốc. Rõ chính sách.</h2>
+      <p class="mt-3 text-lg text-muted">Minh bạch từ chứng từ sản phẩm đến hậu mãi, để bạn kiểm tra trước khi quyết định.</p>
+    </div>
+    <!-- TODO: link each card to your own documents (PDF/image). Remove any card you cannot back with a real document. -->
+    <div class="mt-10 grid md:grid-cols-3 gap-4">
+      <a href="#" class="group reveal rounded-3xl bg-surface border border-line p-6 hover:border-gold transition-colors duration-200">
+        <svg class="w-8 h-8 text-gold"><use href="#i-file"/></svg>
+        <h3 class="mt-4 font-semibold text-lg">Hoá đơn VAT đầy đủ</h3>
+        <p class="mt-1 text-muted">Xuất hoá đơn theo quy định cho mọi đơn hàng.</p>
+        <span class="mt-4 inline-block text-green font-semibold underline-offset-4 group-hover:underline">Xem hoá đơn mẫu</span>
+      </a>
+      <a href="#" class="group reveal rounded-3xl bg-surface border border-line p-6 hover:border-gold transition-colors duration-200">
+        <svg class="w-8 h-8 text-gold"><use href="#i-shield"/></svg>
+        <h3 class="mt-4 font-semibold text-lg">Hồ sơ công bố sản phẩm</h3>
+        <p class="mt-1 text-muted">Văn bản công bố/phân loại thiết bị y tế theo quy định.</p>
+        <span class="mt-4 inline-block text-green font-semibold underline-offset-4 group-hover:underline">Xem văn bản</span>
+      </a>
+      <a href="#" class="group reveal rounded-3xl bg-surface border border-line p-6 hover:border-gold transition-colors duration-200">
+        <svg class="w-8 h-8 text-gold"><use href="#i-check"/></svg>
+        <h3 class="mt-4 font-semibold text-lg">Chứng nhận hợp quy</h3>
+        <p class="mt-1 text-muted">Hồ sơ chứng nhận luôn sẵn để khách hàng kiểm tra.</p>
+        <span class="mt-4 inline-block text-green font-semibold underline-offset-4 group-hover:underline">Xem chứng nhận</span>
+      </a>
+    </div>
+    <ul class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
+      <li class="rounded-2xl border border-line bg-surface p-4"><b class="block font-serif text-2xl text-green">14 ngày</b><span class="text-sm text-muted">Đổi trả</span></li>
+      <li class="rounded-2xl border border-line bg-surface p-4"><b class="block font-serif text-2xl text-green">12 tháng</b><span class="text-sm text-muted">Bảo hành</span></li>
+      <li class="rounded-2xl border border-line bg-surface p-4"><b class="block font-serif text-2xl text-green">COD</b><span class="text-sm text-muted">Thanh toán khi nhận</span></li>
+      <li class="rounded-2xl border border-line bg-surface p-4"><b class="block font-serif text-2xl text-green">Toàn quốc</b><span class="text-sm text-muted">Giao hàng</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== COMBO UPSELL ===== -->
+<section>
+  <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
+    <img src="assets/tmp-therahome/combo.png" alt="Combo máy trị liệu cổ và gối công thái học" width="900" height="675" loading="lazy" class="w-full aspect-[4/3] object-cover rounded-3xl reveal" />
+    <div class="reveal">
+      <span class="text-xs font-semibold bg-green text-white rounded-full px-3 py-1">Chuyên gia khuyên dùng</span>
+      <h2 class="mt-4 font-serif text-3xl md:text-4xl font-semibold text-green leading-tight">Combo phục hồi toàn diện — cho cả <em class="text-gold-ink">giấc ngủ ngon</em></h2>
+      <p class="mt-4 text-lg text-muted leading-relaxed">Mỗi ngày bạn ngủ khoảng 8 tiếng — và đó là lúc bạn mất kiểm soát tư thế nhiều nhất. Đừng chỉ chăm cổ ban ngày mà bỏ quên 1/3 thời gian còn lại.</p>
+      <ul class="mt-6 space-y-3">
+        <li class="flex gap-3"><svg class="w-6 h-6 text-gold shrink-0"><use href="#i-check"/></svg>Thiết kế theo vóc dáng người Việt, nâng đỡ đốt sống C4–C7</li>
+        <li class="flex gap-3"><svg class="w-6 h-6 text-gold shrink-0"><use href="#i-check"/></svg>Phù hợp người thoái hoá, thoát vị cổ, hay đau mỏi về đêm</li>
+        <li class="flex gap-3"><svg class="w-6 h-6 text-gold shrink-0"><use href="#i-check"/></svg>Hạn chế mỏi cổ, cứng gáy khi thức dậy</li>
+        <li class="flex gap-3"><svg class="w-6 h-6 text-gold shrink-0"><use href="#i-check"/></svg>Miễn phí giao hàng toàn quốc</li>
+      </ul>
+      <div class="mt-6 flex items-baseline gap-3 flex-wrap">
+        <span class="font-serif text-3xl font-bold text-green" data-price="combo"></span>
+        <s class="text-muted" data-compare="combo"></s>
+        <span class="text-sm font-semibold text-danger" data-off="combo"></span>
+      </div>
+      <a href="#chon-goi" data-pick="combo" class="mt-6 inline-flex items-center justify-center min-h-[52px] px-8 rounded-full bg-green hover:bg-green-700 text-white font-semibold transition-colors duration-200">Chọn combo — bảo vệ cổ 24/24</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="hoi-dap" class="bg-cream scroll-mt-20">
+  <div class="max-w-3xl mx-auto px-4 py-16 md:py-24">
+    <div class="text-center reveal">
+      <p class="text-sm font-semibold tracking-widest uppercase text-gold-ink">Câu hỏi thường gặp</p>
+      <h2 class="mt-2 font-serif text-3xl md:text-4xl font-semibold text-green">Những điều bạn còn băn khoăn</h2>
+    </div>
+    <div class="mt-10 space-y-3">
+      <details class="group rounded-2xl bg-surface border border-line" open>
+        <summary class="flex items-center justify-between gap-4 p-5 cursor-pointer font-semibold text-lg min-h-[44px]">Tôi không rành công nghệ, có dùng được không?<svg class="chev w-5 h-5 shrink-0 text-gold-ink transition-transform duration-200"><use href="#i-chev"/></svg></summary>
+        <div class="px-5 pb-5 text-muted leading-relaxed"><b class="text-ink">Có.</b> Máy thao tác đơn giản, có video hướng dẫn từng bước. Chuyên viên theo sát lộ trình của bạn qua Zalo, vướng ở đâu chỉ cần nhắn.</div>
+      </details>
+      <details class="group rounded-2xl bg-surface border border-line">
+        <summary class="flex items-center justify-between gap-4 p-5 cursor-pointer font-semibold text-lg min-h-[44px]">Tôi đau lâu năm rồi, có phù hợp không?<svg class="chev w-5 h-5 shrink-0 text-gold-ink transition-transform duration-200"><use href="#i-chev"/></svg></summary>
+        <div class="px-5 pb-5 text-muted leading-relaxed">Nhiều người đau kéo dài không phải vì thiếu cố gắng mà vì thiếu một lộ trình phù hợp với cơ thể mình. Bộ giải pháp này đặc biệt dành cho người hay <b class="text-ink">tái đi tái lại</b>.</div>
+      </details>
+      <details class="group rounded-2xl bg-surface border border-line">
+        <summary class="flex items-center justify-between gap-4 p-5 cursor-pointer font-semibold text-lg min-h-[44px]">Bao lâu thì tôi thấy khác đi?<svg class="chev w-5 h-5 shrink-0 text-gold-ink transition-transform duration-200"><use href="#i-chev"/></svg></summary>
+        <div class="px-5 pb-5 text-muted leading-relaxed">Mỗi người mỗi khác: có người thấy dễ chịu từ những ngày đầu, có người cần thêm thời gian. Điều quan trọng là bạn có một lộ trình rõ ràng thay vì làm theo cảm tính.</div>
+      </details>
+      <details class="group rounded-2xl bg-surface border border-line">
+        <summary class="flex items-center justify-between gap-4 p-5 cursor-pointer font-semibold text-lg min-h-[44px]">Nếu không phù hợp thì sao?<svg class="chev w-5 h-5 shrink-0 text-gold-ink transition-transform duration-200"><use href="#i-chev"/></svg></summary>
+        <div class="px-5 pb-5 text-muted leading-relaxed">Bạn có <b class="text-ink">14 ngày trải nghiệm</b>. Nếu không hài lòng, bạn có thể trả lại hàng theo chính sách đổi trả của Guusuckhoe.</div>
+      </details>
+      <details class="group rounded-2xl bg-surface border border-line">
+        <summary class="flex items-center justify-between gap-4 p-5 cursor-pointer font-semibold text-lg min-h-[44px]">Ai không nên sử dụng?<svg class="chev w-5 h-5 shrink-0 text-gold-ink transition-transform duration-200"><use href="#i-chev"/></svg></summary>
+        <div class="px-5 pb-5 text-muted leading-relaxed">Người đặt <b class="text-ink">máy tạo nhịp tim</b> không sử dụng. Người mới phẫu thuật cột sống cổ, phụ nữ mang thai và người có bệnh lý nền cần hỏi ý kiến bác sĩ trước khi dùng.</div>
+      </details>
+    </div>
+    <p class="mt-8 text-center text-muted">Còn câu hỏi khác? <a href="#lien-he" class="text-green font-semibold underline underline-offset-4">Nhắn Zalo cho chúng tôi</a>.</p>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="bg-green text-white">
+  <div class="max-w-3xl mx-auto px-4 py-16 md:py-20 text-center reveal">
+    <h2 class="font-serif text-3xl md:text-4xl font-semibold">Sẵn sàng làm đúng — một lần, đúng cách?</h2>
+    <p class="mt-4 text-white/85 text-lg">Máy trị liệu kèm lộ trình 14 ngày, chuyên viên đồng hành và 14 ngày đổi trả nếu không phù hợp.</p>
+    <a href="#chon-goi" class="mt-8 inline-flex items-center justify-center min-h-[56px] px-10 rounded-full bg-gold hover:bg-gold-hover text-green-700 font-bold text-lg transition-colors duration-200">Bắt đầu từ <span class="ml-1" data-price="basic"></span></a>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer: TODO fill in your legal entity, address, phone -->
+<footer id="lien-he" class="bg-green-900 text-white/80 scroll-mt-20">
+  <div class="max-w-6xl mx-auto px-4 py-14 grid gap-10 md:grid-cols-3">
+    <div>
+      <div class="flex items-center gap-2">
+        <img src="assets/logo-mark.png" alt="" width="44" height="45" class="w-11 h-auto rounded-full bg-bg p-1" />
+        <span class="font-serif text-2xl font-semibold text-white">Guusuckhoe<span class="text-gold">.com</span></span>
+      </div>
+      <p class="mt-4 text-sm leading-relaxed">Giải pháp chăm sóc cổ vai gáy tại nhà, có lộ trình và người đồng hành.</p>
+    </div>
+    <nav aria-label="Chính sách">
+      <h3 class="font-semibold text-white">Chính sách</h3>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li><a href="#" class="hover:text-gold transition-colors duration-200">Chính sách bảo mật</a></li>
+        <li><a href="#" class="hover:text-gold transition-colors duration-200">Chính sách đổi trả &amp; hoàn tiền</a></li>
+        <li><a href="#" class="hover:text-gold transition-colors duration-200">Chính sách thanh toán</a></li>
+        <li><a href="#" class="hover:text-gold transition-colors duration-200">Chính sách bảo hành</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h3 class="font-semibold text-white">Liên hệ</h3>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li>Địa chỉ: [Địa chỉ công ty]</li>
+        <li>Điện thoại / Zalo: <a href="tel:" class="hover:text-gold">[Số điện thoại]</a></li>
+        <li>Email: <a href="mailto:" class="hover:text-gold">[email@guusuckhoe.com]</a></li>
+        <li>Giờ làm việc: [Thứ Hai – Thứ Sáu, 9:00–17:00]</li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-5 text-center text-sm">© <span id="yr"></span> Guusuckhoe.com</div>
+</footer>
+
+<!-- Mobile sticky buy bar -->
+<div id="stickyBar" class="md:hidden fixed inset-x-0 bottom-0 z-30 bg-surface border-t border-line p-3 flex items-center gap-3 translate-y-full transition-transform duration-300" style="padding-bottom: max(.75rem, env(safe-area-inset-bottom));">
+  <div class="flex-1 min-w-0">
+    <p class="text-xs text-muted truncate">Bộ trị liệu cổ + lộ trình 14 ngày</p>
+    <p class="font-serif font-bold text-green text-lg" data-price="basic"></p>
+  </div>
+  <a href="#chon-goi" class="min-h-[48px] px-6 inline-flex items-center rounded-full bg-green text-white font-semibold">Chọn gói</a>
+</div>
+
+<script>
+  // Edit prices here. Total = unit * qty - extraOff * (qty - 1)
+  const PACKAGES = {
+    basic: { name: 'Bộ trị liệu cổ', unit: 990000, compare: 1690000, extraOff: 100000 },
+    combo: { name: 'Combo phục hồi toàn diện', unit: 1490000, compare: 2490000, extraOff: 150000 },
+  };
+  const ORDER_URL = '#lien-he'; // TODO: point to your checkout / order form
+
+  const vnd = n => n.toLocaleString('vi-VN') + 'đ';
+  const qty = { basic: 1, combo: 1 };
+  const total = k => PACKAGES[k].unit * qty[k] - PACKAGES[k].extraOff * (qty[k] - 1);
+  const form = document.getElementById('buyForm');
+  const picked = () => form.pkg.value;
+
+  document.querySelectorAll('[data-price]').forEach(el => el.textContent = vnd(PACKAGES[el.dataset.price].unit));
+  document.querySelectorAll('[data-compare]').forEach(el => el.textContent = vnd(PACKAGES[el.dataset.compare].compare));
+  document.querySelectorAll('[data-off]').forEach(el => { const p = PACKAGES[el.dataset.off]; el.textContent = 'Tiết kiệm ' + vnd(p.compare - p.unit); });
+
+  function render() {
+    document.querySelectorAll('.qty').forEach(box => {
+      const k = box.dataset.pkg, save = box.closest('.pkg-body').querySelector('.save');
+      box.querySelector('output').textContent = qty[k];
+      box.querySelector('[data-step="-1"]').disabled = qty[k] <= 1;
+      const off = PACKAGES[k].extraOff * (qty[k] - 1);
+      save.classList.toggle('hidden', !off);
+      save.textContent = 'Tiết kiệm thêm ' + vnd(off);
+    });
+    document.getElementById('total').textContent = vnd(total(picked()));
+  }
+
+  form.addEventListener('change', render);
+  form.addEventListener('click', e => {
+    const b = e.target.closest('[data-step]');
+    if (!b) return;
+    e.preventDefault();
+    const k = b.closest('.qty').dataset.pkg;
+    qty[k] = Math.min(10, Math.max(1, qty[k] + Number(b.dataset.step)));
+    render();
+  });
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const k = picked();
+    const url = new URL(ORDER_URL, location.href);
+    url.searchParams.set('pkg', k);
+    url.searchParams.set('qty', qty[k]);
+    location.href = url;
+  });
+  document.querySelectorAll('[data-pick]').forEach(a => a.addEventListener('click', () => {
+    form.querySelector(`input[value="${a.dataset.pick}"]`).checked = true; render();
+  }));
+  render();
+
+  // Gallery thumbs
+  const gallery = document.getElementById('gallery');
+  const thumbs = document.querySelectorAll('.thumb');
+  thumbs.forEach(t => t.addEventListener('click', () => gallery.scrollTo({ left: gallery.clientWidth * t.dataset.i, behavior: 'smooth' })));
+  gallery.addEventListener('scroll', () => {
+    const i = Math.round(gallery.scrollLeft / gallery.clientWidth);
+    thumbs.forEach((t, j) => { t.classList.toggle('ring-2', i === j); t.classList.toggle('ring-green', i === j); });
+  }, { passive: true });
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn'), mobileNav = document.getElementById('mobileNav');
+  menuBtn.addEventListener('click', () => {
+    const open = mobileNav.classList.toggle('hidden') === false;
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+  mobileNav.addEventListener('click', e => { if (e.target.closest('a')) { mobileNav.classList.add('hidden'); menuBtn.setAttribute('aria-expanded', false); } });
+
+  // Sticky bar shows once the buy box is off screen
+  const bar = document.getElementById('stickyBar');
+  new IntersectionObserver(([en]) => bar.classList.toggle('translate-y-full', en.isIntersecting))
+    .observe(document.getElementById('chon-goi'));
+
+  // Reveal on scroll
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Temp images are git-ignored; fall back to a placeholder block when they are missing
+  const toPlaceholder = img => { const d = document.createElement('div'); d.className = img.className + ' ph'; d.setAttribute('role', 'img'); d.setAttribute('aria-label', img.alt || 'Ảnh sản phẩm'); img.replaceWith(d); };
+  document.querySelectorAll('img[src*="tmp-therahome"]').forEach(img => {
+    if (img.complete && !img.naturalWidth) toPlaceholder(img);
+    else img.addEventListener('error', () => toPlaceholder(img), { once: true });
+  });
+</script>
+</body>
+</html>
